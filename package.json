@@ -1,6 +1,6 @@
 {
   "name": "@penseapp/npm-package-template",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A template to create a new npm package",
   "main": "dist/index.js",
   "module": "dist/index.js",
