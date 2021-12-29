@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Install Dependencies
-        run: npm run i-all
+        run: yarn
 
       - name: Check lint
         run: yarn lint
@@ -30,7 +30,7 @@ jobs:
       #   run: yarn test
 
       - name: Build
-        run: npm run build:all
+        run: yarn build:all
 
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
@@ -44,16 +44,6 @@ jobs:
         with:
           name: dist-folder
           path: dist/**/*
-
-      - name: Archive playground Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: playground-artifact
-          path: |
-            ./playground/build
-            ./playground/firebase.json
-            ./playground/.firebaserc
-          if-no-files-found: error
 
       - name: Discord notification - finished build (Success)
         if: success()
@@ -131,45 +121,4 @@ jobs:
         with:
           severity: warn
           description: Github generated release cancelled
-          webhookUrl: ${{ secrets.DISCORD_CHANNEL_WEBHOOK }}
-
-  deploy-firebase:
-    name: Deploy on Firebase
-    needs: [publish]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Playground Artifact
-        uses: actions/download-artifact@master
-        with:
-          name: playground-artifact
-
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy
-        env:
-          FIREBASE_TOKEN: ${{ secrets.USELOCALSTORAGE_FIREBASE_TOKEN }}
-
-      - name: Discord notification - deploy (success)
-        if: success()
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        with:
-          severity: info
-          description: Deploy finished - uselocalstorage
-          webhookUrl: ${{ secrets.DISCORD_CHANNEL_WEBHOOK }}
-
-      - name: Discord notification - deploy (error)
-        if: failure()
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        with:
-          severity: error
-          description: Deploy failed
-          webhookUrl: ${{ secrets.DISCORD_CHANNEL_WEBHOOK }}
-
-      - name: Discord notification - deploy (cancelled)
-        if: cancelled()
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        with:
-          severity: warn
-          description: Deploy cancelled
           webhookUrl: ${{ secrets.DISCORD_CHANNEL_WEBHOOK }}

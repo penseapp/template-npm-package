@@ -50,10 +50,36 @@ https://www.npmjs.com/settings/penseapp/packages
 Follow the tutorial:
 https://jamescalmus.medium.com/how-to-publish-a-scoped-npm-package-for-your-organization-767af1c99b9f
 
+## Github
+
+Create a new repository on github
+
+Create a manual release (Only the first time) on the same version of the packge.json and publish the release
+> On this example, the version is 1.0.0
+
+
+Delete this "default GIT" folder
+
+```
+rm -rf .git
+```
+
+and add the files to your repo
+
+```
+git add .
+git commit -m 'chore: first version'
+git branch -M master
+git remote add origin git@github.com:penseapp/npm-package-template.git
+git push -u origin master
+```
+
+If everything is ok, the github should start the pipeline deploy
+
 ## How to install the package
 
 TODO:
-- [] Replace the `@penseapp/npm-package-template` to your package name
+-[] Replace the `@penseapp/npm-package-template` to your package name
 
 ```
 yarn add @penseapp/npm-package-template
@@ -78,7 +104,7 @@ github actions pipelines to automatize deploy on NPM and chore things.
 
 ## Commitlint
 
-- [] Enforce the commitlint
+-[] Enforce the commitlint
 
 ## Discord integration
 
