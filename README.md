@@ -1,116 +1,98 @@
-# useLocalStorage
+# npm-package-template
 
 <!-- <div align="center"> -->
 
 <!-- ![npm](https://img.shields.io/npm/dt/nodejs-health-checker?style=for-the-badge)<br> -->
 
-[![npm version](https://badge.fury.io/js/%40penseapp%2Fuselocalstorage.svg)](https://badge.fury.io/js/%40penseapp%2Fuselocalstorage)
-[![Tag Status](https://img.shields.io/github/tag/penseapp/uselocalstorage)](https://img.shields.io/github/v/tag/penseapp/uselocalstorage)
-[![License Status](https://img.shields.io/github/license/penseapp/uselocalstorage)](https://img.shields.io/github/license/penseapp/uselocalstorage)
-[![Issues Status](https://img.shields.io/github/issues/penseapp/uselocalstorage)](https://img.shields.io/github/issues/penseapp/uselocalstorage)
+[![npm version](https://badge.fury.io/js/%40penseapp%2Fnpm-package-template.svg)](https://badge.fury.io/js/%40penseapp%2Fnpm-package-template)
+[![Tag Status](https://img.shields.io/github/tag/penseapp/npm-package-template)](https://img.shields.io/github/v/tag/penseapp/npm-package-template)
+[![License Status](https://img.shields.io/github/license/penseapp/npm-package-template)](https://img.shields.io/github/license/penseapp/npm-package-template)
+[![Issues Status](https://img.shields.io/github/issues/penseapp/npm-package-template)](https://img.shields.io/github/issues/penseapp/npm-package-template)
 
-<!-- ![test](https://github.com/penseapp/uselocalstorage/workflows/test/badge.svg?branch=master) -->
-<!-- ![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/@penseapp/uselocalstorage/test) -->
-<!-- [![Coverage Status](https://coveralls.io/repos/github/penseapp/uselocalstorage/badge.svg?branch=master)](https://coveralls.io/github/penseapp/uselocalstorage?branch=master) -->
+<!-- ![test](https://github.com/penseapp/npm-package-template/workflows/test/badge.svg?branch=master) -->
+<!-- ![GitHub Workflow Status (event)](https://img.shields.io/github/workflow/status/@penseapp/npm-package-template/test) -->
+<!-- [![Coverage Status](https://coveralls.io/repos/github/penseapp/npm-package-template/badge.svg?branch=master)](https://coveralls.io/github/penseapp/npm-package-template?branch=master) -->
 
 <!-- </div> -->
 
-This is a react hook that allows you to use the power of browser localstorage
-and the useState react hook combined!
+This is a template file that you can extend to create your own NPM package!
 
-The API is the same, and you'll see no difference between them!
+## How to use
 
-## Example live action
+Clone this repository on any folder
 
-![Peek 2021-02-28 17-40](https://user-images.githubusercontent.com/5152197/109432913-444be780-79ec-11eb-87ad-bcc3d1204bb8.gif)
-
-You can try this live version on: https://penseapp-uselocalstorage.web.app/
-
-## TL;DR
-
-```tsx
-import { useLocalStorage } from "@penseapp/uselocalstorage";
-
-const [state, setState] = useLocalStorage<string>(
-  "keyName",
-  "useLocalStorage",
-  false // or a number
-);
+```shell
+cd ~/my-folder/some-folder
+git clone git@github.com:penseapp/npm-package-template.git
 ```
 
-## How to install
+Open the `package.json` file and edit these props:
 
-```sh
-yarn add @penseapp/uselocalstorage
+| Prop name  | Description | Example | 
+|---|---|---|
+| name  | The same package name registered on NPM  | @penseapp/my-package-name  |
+| version  | The first version of package (It will increment automatically later  | 1.0.0  |
+| description  | It'll appear on NPM/Github  | This package to A,B,C  |
+
+Open the `README.MD` and update your package instructions
+
+---
+
+Create an account or login on [NPM](https://www.npmjs.com/login)
+
+Go to the `packages` section. (Here you need to choose to create on a personal account or organization)
+
+For example:
+```
+https://www.npmjs.com/settings/penseapp/packages
+```
+
+Follow the tutorial:
+https://jamescalmus.medium.com/how-to-publish-a-scoped-npm-package-for-your-organization-767af1c99b9f
+
+## How to install the package
+
+TODO:
+- [] Replace the `@penseapp/npm-package-template` to your package name
+
+```
+yarn add @penseapp/npm-package-template
 ```
 
 or
 
-```sh
-npm i @penseapp/uselocalstorage
+```
+npm i @penseapp/npm-package-template
 ```
 
-## How to use
+## Github actions
 
-Import the lib on your component
+This package uses the workflows/pipelines on the `.github` folder to trigger
+github actions pipelines to automatize deploy on NPM and chore things.
 
-```tsx
-import { useLocalStorage } from "@penseapp/uselocalstorage";
+- Deploy automatically on NPM
+- Bump `package.json` version automatically
+- Bump `github version` automatically
+- Bump `npm version` automatically
+- Label the PR's automatically.
+
+## Commitlint
+
+- [] Enforce the commitlint
+
+## Discord integration
+
+This package has a custom integration to Discord server. If you want to receive
+notifications on your preferred channel, follow the steps bellow.
+
+If not, delete or comment the `Discord notification` pipelines on `.github/workflows/deploy.yml` github action file.
+
+```
+Open Discord -> select the channel -> Click on configuration -> Integrations -> View webhooks -> New webhook
 ```
 
-Simple change the `useState` to `useLocalStorage` on any hooks and it's done.
-Now you can reload your browser and your state will maintein
+Create a new webhook called `Discord notification` and add on Github secrets with a name of `DISCORD_CHANNEL_WEBHOOK`, like the GIF bellow:
 
-```diff
-import React, { useState } from "react";
-import { useLocalStorage } from "@penseapp/uselocalstorage";
+![Peek 2021-06-02 22-21](https://user-images.githubusercontent.com/5152197/121472497-aa56ec00-c997-11eb-83cb-b9f03094e5dd.gif)
 
-const App: React.FC = () => {
--  const [state, setstate] = useState<boolean>(false);
-+  const [state, setstate] = useLocalStorage<boolean>('keyName', false);
-
-  return (
-    <>
-      Your React component...
-    </>
-  );
-};
-
-export default App;
-```
-
-## API / Props
-
-| Name         | Type            | Required | Default            | Description                                     |
-| ------------ | --------------- | -------- | ------------------ | ----------------------------------------------- |
-| key          | string          | true     |                    | Key name from `localStorage` (Should be unique) |
-| initialValue | any (Generic)   | true     |                    | Same as the `useState` hook                     |
-| expire       | number or false | false    | 60 \* 30 (seconds) | Time in seconds to expiry (false to infinite)   |
-
-## localStorage expire
-
-This lib use as dependecy the [expired-storage](https://www.npmjs.com/package/expired-storage), so you can controll your state by how much time it should persist on localStorage
-
-You have two options:
-
-- Set the time in seconds
-- Set false to infinite
-
-**Examples**
-
-```tsx
-// Never expires (infinite)
-const [state, setstate] = useLocalStorage<boolean>('keyName', 'defaultValue', false);
-
-
-// Expires in 1 minute
-const [state, setstate] = useLocalStorage<boolean>('keyName', 'defaultValue', 60);
-
-
-// Expires in 1 hour
-const [state, setstate] = useLocalStorage<boolean>('keyName', 'defaultValue', 60 * 60 * 1); // 3600 seconds
-
-
-// Expires in 12 hours
-const [state, setstate] = useLocalStorage<boolean>('keyName', 'defaultValue', 60 * 60 * 12); // 43200 seconds
-```
+Now, you will receive the notifications on the desired discord channel.
