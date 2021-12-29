@@ -36,7 +36,7 @@ Open the `package.json` file and edit these props:
 
 Open the `README.MD` and update your package instructions
 
----
+## NPM
 
 Create an account or login on [NPM](https://www.npmjs.com/login)
 
@@ -50,11 +50,24 @@ https://www.npmjs.com/settings/penseapp/packages
 Follow the tutorial:
 https://jamescalmus.medium.com/how-to-publish-a-scoped-npm-package-for-your-organization-767af1c99b9f
 
+
+### NPM AUTH TOKEN
+
+The package uses https://github.com/mikeal/merge-release to deploy to NPM
+
+We need to configure the `NPM_AUTH_TOKEN` on github secrets because the `.github/workflows/deploy.yml` 
+has the call of the token
+
+Generate a new token:
+https://docs.npmjs.com/creating-and-viewing-access-tokens
+
+Copy and add to your github secrets with the `NPM_TOKEN` key
+
 ## Github
 
 Create a new repository on github
 
-Create a manual release (Only the first time) on the same version of the packge.json and publish the release
+Create a manual tag and release (Only the first time) on the same version of the packge.json and publish the release
 > On this example, the version is 1.0.0
 
 
