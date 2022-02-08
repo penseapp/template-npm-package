@@ -36,6 +36,26 @@ Open the `package.json` file and edit these props:
 
 Open the `README.MD` and update your package instructions
 
+## Tests
+
+This packages is configured to use JEST with TS.
+
+You can create tests on `/tests/` folder and if you want to change the directory to the `src` along the other files, follow this steps:
+
+Change the `format` script on `package.json`
+
+```diff
+- "format": "prettier --config .prettierrc.json --ignore-unknown --write \"src/**/*.ts\" \"tests/**/*.ts\"",
++ "format": "prettier --config .prettierrc.json --ignore-unknown --write \"src/**/*.ts\"",
+```
+
+Change the `include` section on `tsconfig.json`
+
+```diff
+- "include": ["src/**/*", "tests/index.spec.ts"],,
++ "include": ["src/**/*", "src/**/*.spec.*"],,
+```
+
 ## NPM
 
 Create an account or login on [NPM](https://www.npmjs.com/login)
